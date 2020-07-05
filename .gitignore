@@ -3,3 +3,6 @@
 
 #environment
 venv/
+
+#apps
+blog/migrations

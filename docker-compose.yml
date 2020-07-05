@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  aivanio-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:aivanioweb
+      - blog_static_volume:/aivaniowebsite/static
+      - blog_files_volume:/aivaniowebsite/files
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - blog_network
+      - nginx_network
+    depends_on:
+      - blog_postgresql
+
+  blog_postgresql:
+    image: postgres:12
+    container_name: blog_postgresql
+    volumes:
+      - blog_postgresql:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
+    ports:
+      - "5432:5432"
+    networks:
+      - blog_network
+
+volumes:
+  blog_postgresql:
+    external: true
+  blog_static_volume:
+    external: true
+  blog_files_volume:
+    external: true
+networks:
+  blog_network:
+    external: true
+  nginx_network:
+    external: true
