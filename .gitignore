@@ -1,0 +1,5 @@
+#windows stuff
+.idea/
+
+#environment
+venv/
