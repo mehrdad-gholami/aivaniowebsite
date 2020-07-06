@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - blog_static_volume:/aivaweb/static
+      - blog_files_volume:/aivaweb/files
+    networks:
+      - nginx_network
+volumes:
+  blog_static_volume:
+    external: true
+  blog_files_volume:
+    external: true
+networks:
+  nginx_network:
+    external: true

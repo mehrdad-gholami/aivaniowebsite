@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:aivanioweb
-      - blog_static_volume:/aivaniowebsite/static
-      - blog_files_volume:/aivaniowebsite/files
+      - blog_static_volume:/aivaweb/static
+      - blog_files_volume:/aivaweb/files
     restart: always
     ports:
       - "8000:8000"
